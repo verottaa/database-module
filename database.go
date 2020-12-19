@@ -16,7 +16,7 @@ func FindOne(collection string, filter interface{}) (Code, interface{}) {
 	return findOne(collection, filter)
 }
 
-func FindMany(collection string, filter interface{}) (Code, interface{}) {
+func FindMany(collection string, filter interface{}) (Code, []interface{}) {
 	return findMany(collection, filter)
 }
 
