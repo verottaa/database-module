@@ -72,3 +72,39 @@ func findMany(collectionName string, filter interface{}) (Code, []interface{}) {
 	}
 	return FOUND_ANY, resultArray
 }
+
+func deleteOne(collectionName string, filter interface{}) Code {
+	collection := getCollection(collectionName)
+
+	ctx, cancel := context.WithTimeout(_context, 1*time.Second)
+	defer cancel()
+
+	result, err:= collection.DeleteOne(ctx, filter)
+	if err != nil {
+		fmt.Println(err.Error())
+		return ERROR
+	}
+
+	if result.DeletedCount == 0 {
+		return NOT_FOUND
+	}
+	return DELETED
+}
+
+func deleteMany(collectionName string, filter interface{}) (Code, int64) {
+	collection := getCollection(collectionName)
+
+	ctx, cancel := context.WithTimeout(_context, 1*time.Second)
+	defer cancel()
+
+	result, err := collection.DeleteMany(ctx, filter)
+	if err != nil {
+		fmt.Println(err.Error())
+		return ERROR, 0
+	}
+
+	if result.DeletedCount == 0{
+		return NOT_FOUND, result.DeletedCount
+	}
+	return DELETED, result.DeletedCount
+}
