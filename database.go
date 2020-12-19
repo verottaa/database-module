@@ -20,14 +20,14 @@ func FindMany(collection string, filter interface{}) (Code, []interface{}) {
 	return findMany(collection, filter)
 }
 
-func Update(collection string, filter interface{}, object interface{}) (Code, interface{}) {
-	return 0, nil
+func UpdateOne(collection string, filter interface{}, updatedObject interface{}) Code {
+	return updateOne(collection, filter, updatedObject)
 }
 
 func DeleteOne(collection string, filter interface{}) Code {
 	return deleteOne(collection, filter)
 }
 
-func DeleteAll(collection string, filter interface{}) (Code, int64) {
+func DeleteMany(collection string, filter interface{}) (Code, int64) {
 	return deleteMany(collection, filter)
 }

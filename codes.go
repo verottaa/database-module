@@ -11,4 +11,5 @@ const (
 	NOT_FOUND
 	FOUND_ANY
 	DELETED
+	UPDATED
 )

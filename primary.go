@@ -108,3 +108,21 @@ func deleteMany(collectionName string, filter interface{}) (Code, int64) {
 	}
 	return DELETED, result.DeletedCount
 }
+
+func updateOne(collectionName string, filter interface{}, updatedObject interface{}) (Code) {
+	collection := getCollection(collectionName)
+
+	ctx, cancel := context.WithTimeout(_context, 1*time.Second)
+	defer cancel()
+
+	result, err := collection.UpdateOne(ctx, filter, updatedObject)
+	if err != nil{
+		fmt.Println(err.Error())
+		return ERROR
+	}
+
+	if result.ModifiedCount == 0 {
+		return NOT_FOUND
+	}
+	return UPDATED
+}
