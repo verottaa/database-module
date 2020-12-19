@@ -12,12 +12,12 @@ func PushOne(collection string, object interface{}) (Code, interface{}) {
 	return create(collection, object)
 }
 
-func FindOne(filter interface{}) {
-
+func FindOne(collection string, filter interface{}) (Code, interface{}) {
+	return findOne(collection, filter)
 }
 
-func FindMany(filter interface{}) {
-
+func FindMany(collection string, filter interface{}) interface{} {
+	return findMany(collection, filter)
 }
 
 func Update(filter interface{}, object interface{}) {
