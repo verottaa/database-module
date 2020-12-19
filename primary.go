@@ -18,5 +18,9 @@ func create(collectionName string, object interface{}) (Code, interface{}) {
 		return ERROR, nil
 	}
 
-	return SUCCESS, result.InsertedID
+	return CREATED, result.InsertedID
+}
+
+func findOne() {
+	
 }
