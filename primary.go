@@ -3,6 +3,7 @@ package database_module
 import (
 	"context"
 	"fmt"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"time"
 )
@@ -125,4 +126,8 @@ func updateOne(collectionName string, filter interface{}, updatedObject interfac
 		return NOT_FOUND
 	}
 	return UPDATED
+}
+
+func generateObjectID() primitive.ObjectID{
+	return primitive.NewObjectID()
 }

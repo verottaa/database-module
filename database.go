@@ -1,5 +1,7 @@
 package database_module
 
+import "go.mongodb.org/mongo-driver/bson/primitive"
+
 func InitDatabase(uri string, dbName string) Code {
 	return initialize(uri, dbName)
 }
@@ -30,4 +32,8 @@ func DeleteOne(collection string, filter interface{}) Code {
 
 func DeleteMany(collection string, filter interface{}) (Code, int64) {
 	return deleteMany(collection, filter)
+}
+
+func GenerateObjectID() primitive.ObjectID {
+	return generateObjectID()
 }
